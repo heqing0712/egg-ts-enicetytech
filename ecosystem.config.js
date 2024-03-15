@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'egg后端接口', // 项目名
+      name: 'egg-ts-enicetytech', // 项目名
       script: './server.js', // 执行文件
       cwd: './', // 根目录
       args: 'one two', // 传递给脚本的参数
@@ -28,7 +28,7 @@ module.exports = {
         'run', //
         'test', //
         'typings', //
-        'pm2.config', //
+        'ecosystem.config', //
       ],
       env: {
         NODE_ENV: 'development',
