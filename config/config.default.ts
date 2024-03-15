@@ -11,7 +11,7 @@ export default (appInfo: EggAppInfo) => {
       path: '',
       port: 7004,
       hostname: '0.0.0.0',
-    }
+    },
   };
   /**
    * typeorm 配置
@@ -24,7 +24,7 @@ export default (appInfo: EggAppInfo) => {
       port: 3306,
       username: 'root',
       password: '123456',
-      database: 'sf_enicetytech_admin',
+      database: 'sf_admin_enicetytech',
       synchronize: false,
       logging: true,
       // timezone: '+08:00',
@@ -93,7 +93,7 @@ export default (appInfo: EggAppInfo) => {
 
   config.cors = {
     origin: '*',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
   };
 
 
@@ -135,8 +135,8 @@ export default (appInfo: EggAppInfo) => {
       path.join(appInfo.baseDir, 'public'),
       {
         prefix: '/static/',
-        dir: path.join(appInfo.baseDir, 'public/admin/static')
-      }
+        dir: path.join(appInfo.baseDir, 'public/admin/static'),
+      },
     ],
     dynamic: true,
     preload: false,
@@ -156,26 +156,25 @@ export default (appInfo: EggAppInfo) => {
   // 配置 class-transformer options
   config.classValidator = {
     classTransformOptions: {
-      excludeExtraneousValues: false
+      excludeExtraneousValues: false,
     },
     // 自定义错误处理
     handleError: (ctx, errors: ValidationError[]) => {
       // 做你想做的事情，第一个参数为Context，第二个参数为ValidationError[]
 
-      const errorMsgList: any = []
+      const errorMsgList: any = [];
       errors.forEach((error: ValidationError) => {
-        const errList: string[] = []
+        const errList: string[] = [];
         for (const d in error.constraints) {
-          errList.push(error.constraints[d])
+          errList.push(error.constraints[d]);
         }
-        //参数 ${error.property}(${error.value}) 
-        errorMsgList.push(`${errList.join(',')}`)
-      })
+        // 参数 ${error.property}(${error.value})
+        errorMsgList.push(`${errList.join(',')}`);
+      });
 
       ctx.throw(400, `参数异常,${errorMsgList.join(',')}`);
-    }
-  }
-
+    },
+  };
 
 
   // https://eggjs.org/zh-cn/core/error-handling.html
@@ -196,8 +195,8 @@ export default (appInfo: EggAppInfo) => {
 
   exports.cors = {
     enable: true,
-    package: 'egg-cors'
-  }
+    package: 'egg-cors',
+  };
 
 
   /**
@@ -229,11 +228,11 @@ export default (appInfo: EggAppInfo) => {
       //   if(ctx.request.url.indexOf('/ueditor')>-1){
       //     return true;
       //   }
-      //   return false; 
+      //   return false;
       // },
-      enable: false
-    }
-  }
+      enable: false,
+    },
+  };
 
   // the return config will combines to EggAppConfig
   return {
