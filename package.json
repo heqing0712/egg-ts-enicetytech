@@ -8,8 +8,8 @@
     "declarations": true
   },
   "scripts": {
-    "start": "egg-scripts start --sticky --daemon --title=egg-admin-server --ignore-stderr",
-    "stop": "egg-scripts stop --sticky --title=egg-admin-server",
+    "start": "egg-scripts start --sticky --daemon --title=egg-ts-enicetytech --ignore-stderr",
+    "stop": "egg-scripts stop --sticky --title=egg-ts-enicetytech",
     "dev": "egg-bin dev --sticky",
     "debug": "egg-bin debug",
     "test-local": "egg-bin test",
