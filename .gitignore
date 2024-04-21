@@ -14,7 +14,15 @@ logs/
 !.autod.conf.js
 package-lock.json
 
-app/**/*.js
+app/controller/*.js
+app/decorator/*.js
+app/dto/*.js
+app/middleware/*.js
+app/entities/*.js
+app/extend/*.js
+app/queue/*.js
+app/service/*.js
+app/router.js
 test/**/*.js
 config/**/*.js
 app/**/*.map
