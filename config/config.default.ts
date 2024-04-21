@@ -1,16 +1,16 @@
-import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
-import * as path from 'path';
-import * as fs from 'fs';
-import { ValidationError } from 'class-validator';
+import { EggAppConfig, EggAppInfo, PowerPartial } from "egg";
+import * as path from "path";
+import * as fs from "fs";
+import { ValidationError } from "class-validator";
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
 
   config.cluster = {
     listen: {
-      path: '',
+      path: "",
       port: 7004,
-      hostname: '0.0.0.0',
+      hostname: "0.0.0.0",
     },
   };
   /**
@@ -19,12 +19,12 @@ export default (appInfo: EggAppInfo) => {
    */
   config.typeorm = {
     client: {
-      type: 'mysql',
-      host: '127.0.0.1',
+      type: "mysql",
+      host: "127.0.0.1",
       port: 3306,
-      username: 'root',
-      password: '123456',
-      database: 'sf_admin_enicetytech',
+      username: "root",
+      password: "123456",
+      database: "sf_admin_enicetytech",
       synchronize: false,
       logging: true,
       // timezone: '+08:00',
@@ -42,26 +42,25 @@ export default (appInfo: EggAppInfo) => {
     },
   };
 
-
   // override config from framework / plugin
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1597893009804_8539';
+  config.keys = appInfo.name + "_1597893009804_8539";
 
   // 配置网站图标 可为网络图标
   config.siteFile = {
-    '/favicon.ico': fs.readFileSync(path.join(__dirname, '../favicon.ico')),
+    "/favicon.ico": fs.readFileSync(path.join(__dirname, "../favicon.ico")),
   };
 
   // add your egg config in here
-  config.middleware = ['adminReqLog', 'execption', 'adminAuthority'];
+  config.middleware = ["adminReqLog", "execption", "adminAuthority"];
 
   config.aesSecret = {
-    admin: 'hXuLvp6zmhahtW1kf21DpYxm',
-    front: 'eECRYHR5Er93BijVlkMz9CIn',
+    admin: "hXuLvp6zmhahtW1kf21DpYxm",
+    front: "eECRYHR5Er93BijVlkMz9CIn",
   };
 
   config.jwt = {
-    secret: 'INnyQ50BEE6AITQraIaDGooJ',
+    secret: "INnyQ50BEE6AITQraIaDGooJ",
   };
 
   // Root角色对应ID
@@ -72,7 +71,7 @@ export default (appInfo: EggAppInfo) => {
    * 更多配置参考 @{Link:https://github.com/eggjs/egg-i18n}
    */
   config.i18n = {
-    defaultLocale: 'zh-CN',
+    defaultLocale: "zh-CN",
   };
 
   // add your special config in here
@@ -83,7 +82,9 @@ export default (appInfo: EggAppInfo) => {
   // https://eggjs.org/zh-cn/core/security.html
   config.security = {
     // 配合egg-cors使用
-    domainWhiteList: ['https://vue-admin-9girha1607536ebb-1258100541.tcloudbaseapp.com'],
+    domainWhiteList: [
+      "https://vue-admin-9girha1607536ebb-1258100541.tcloudbaseapp.com",
+    ],
     csrf: {
       // 默认为 false，当设置为 true 时，将会放过所有 content-type 为 `application/json` 的请求
       enable: true,
@@ -92,21 +93,20 @@ export default (appInfo: EggAppInfo) => {
   };
 
   config.cors = {
-    origin: '*',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+    origin: "*",
+    allowMethods: "GET,HEAD,PUT,POST,DELETE,PATCH",
   };
-
 
   // bull config
   config.bull = {
     default: {
       redis: {
         port: 6379,
-        host: '127.0.0.1',
-        password: '123456',
+        host: "127.0.0.1",
+        // password: '123456',
         db: 0,
       },
-      prefix: 'sf_enicetytech_admin:task',
+      prefix: "sf_enicetytech_admin:task",
     },
   };
 
@@ -115,7 +115,7 @@ export default (appInfo: EggAppInfo) => {
    * https://github.com/eggjs/egg-global-header
    */
   config.globalHeader = {
-    'Powered-by': 'sf_enicetytech_admin',
+    "Powered-by": "sf_enicetytech_admin",
   };
 
   /**
@@ -125,17 +125,17 @@ export default (appInfo: EggAppInfo) => {
 
   // 模板渲染配置
   config.view = {
-    defaultViewEngine: 'nunjucks',
+    defaultViewEngine: "nunjucks",
   };
 
   // static config
   config.static = {
-    prefix: '/static/',
+    prefix: "/static/",
     dir: [
-      path.join(appInfo.baseDir, 'public'),
+      path.join(appInfo.baseDir, "public"),
       {
-        prefix: '/static/',
-        dir: path.join(appInfo.baseDir, 'public/admin/static'),
+        prefix: "/static/",
+        dir: path.join(appInfo.baseDir, "public/admin/static"),
       },
     ],
     dynamic: true,
@@ -149,9 +149,8 @@ export default (appInfo: EggAppInfo) => {
    * https://eggjs.org/zh-cn/basics/controller.html#获取上传的文件
    */
   config.multipart = {
-    mode: 'file',
+    mode: "file",
   };
-
 
   // 配置 class-transformer options
   config.classValidator = {
@@ -169,13 +168,12 @@ export default (appInfo: EggAppInfo) => {
           errList.push(error.constraints[d]);
         }
         // 参数 ${error.property}(${error.value})
-        errorMsgList.push(`${errList.join(',')}`);
+        errorMsgList.push(`${errList.join(",")}`);
       });
 
-      ctx.throw(400, `参数异常,${errorMsgList.join(',')}`);
+      ctx.throw(400, `参数异常,${errorMsgList.join(",")}`);
     },
   };
-
 
   // https://eggjs.org/zh-cn/core/error-handling.html
   config.onerror = {
@@ -195,9 +193,8 @@ export default (appInfo: EggAppInfo) => {
 
   exports.cors = {
     enable: true,
-    package: 'egg-cors',
+    package: "egg-cors",
   };
-
 
   /**
    * redis 配置
@@ -208,14 +205,14 @@ export default (appInfo: EggAppInfo) => {
       // instanceName. See below
       admin: {
         port: 6379,
-        host: '127.0.0.1',
-        password: '123456',
+        host: "127.0.0.1",
+        password: "123456",
         db: 0,
       },
       app: {
         port: 6379,
-        host: '127.0.0.1',
-        password: '123456',
+        host: "127.0.0.1",
+        password: "123456",
         db: 1,
       },
     },

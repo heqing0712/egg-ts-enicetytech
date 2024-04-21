@@ -3,7 +3,6 @@ import * as _ from "lodash";
 import {
   CreateCaseDto,
   QueryCaseDto,
-  smallCaseDto,
   UpdateCaseDto,
 } from "../../../dto/admin/shop/case";
 
